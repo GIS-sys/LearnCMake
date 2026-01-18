@@ -31,6 +31,6 @@ rm ./logger.o
 make -f $MAKEFILE_PATH all
 
 echo -e "\nПример, что будет, если удалить только конечный файл компиляции (main)..."
-rm ./main.o
+rm ./main
 make -f $MAKEFILE_PATH all
 
