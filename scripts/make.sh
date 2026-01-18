@@ -1,14 +1,36 @@
-mkdir -p build_gcc
-cd build_gcc
+echo "Usage:"
+echo "  scripts/make.sh <index of Makefile to use>"
 
-# Компиляция каждого объектного файла
-g++ -c ../src/calculator.cpp -I ../include/ -o calculator.o
-g++ -c ../src/logger.cpp -I ../include/ -o logger.o
-g++ -c ../main.cpp -Iinclude -o main.o
+IND=$1
+MAKEFILE_NAME="${IND}.Makefile"
+if [ ! -f $MAKEFILE_NAME ]; then
+    echo "File $MAKEFILE_NAME not found!"
+    exit 1
+fi
+echo "Using $MAKEFILE_NAME"
+echo ""
 
-# Линковка всех объектных файлов в исполняемый файл
-g++ calculator.o logger.o main.o -o main
+# Создать временную директорию для компиляции
+mkdir -p build_make_${IND}
+cd build_make_${IND}
+MAKEFILE_PATH="../${MAKEFILE_NAME}"
 
-# Запуск
+
+echo -e "\nКомпиляция с файлом make..."
+make -f $MAKEFILE_PATH clean
+make -f $MAKEFILE_PATH all
+
+echo -e "\nЗапуск файла..."
 ./main
+
+echo -e "\nПример, что будет, если не удалять файлы компиляции..."
+make -f $MAKEFILE_PATH all
+
+echo -e "\nПример, что будет, если удалить только один промежуточный файл компиляции (logger.o)..."
+rm ./logger.o
+make -f $MAKEFILE_PATH all
+
+echo -e "\nПример, что будет, если удалить только конечный файл компиляции (main)..."
+rm ./main.o
+make -f $MAKEFILE_PATH all
 
