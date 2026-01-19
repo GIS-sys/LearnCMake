@@ -1,5 +1,5 @@
 echo "Usage:"
-echo "  scripts/make.sh <index of Makefile to use>"
+echo "  scripts/make.sh <0-2 : index of Makefile to use>"
 
 IND=$1
 MAKEFILE_NAME="${IND}.Makefile"

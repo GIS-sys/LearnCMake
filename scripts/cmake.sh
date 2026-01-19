@@ -1,5 +1,5 @@
 echo "Usage:"
-echo "  scripts/cmake.sh <index of CMakeLists to use>"
+echo "  scripts/cmake.sh <0-2 : index of CMakeLists to use>"
 
 IND=$1
 CMAKELISTS_NAME="${IND}.cmakelists/"
