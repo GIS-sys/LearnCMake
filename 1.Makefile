@@ -1,8 +1,8 @@
 # Определяем переменные
 CXX = g++
 CXXFLAGS = -Wall -Wextra -std=c++11
-OBJS = calculator.o logger.o main.o
 TARGET = main
+OBJS = calculator.o logger.o main.o
 
 # Правило по умолчанию - скомпилировать конкретный файл-результат
 all: $(TARGET)
